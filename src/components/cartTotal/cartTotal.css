@@ -1,0 +1,26 @@
+.total-price-details {
+    background-color: #fbe4e4;
+    width: 90%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.total-price-details ul {
+    width: 90%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 20px;
+    font-size: 18px !important;
+}
+
+.total-price-details ul li {
+    width: 100%;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "gilroy";
+    src: url("../Gilroy-Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "gilroy-bold";
+    src: url("../Gilroy-ExtraBold.otf") format("opentype");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "gilroy", sans-serif;
+    /* animation: fadeIn 1s ease-in-out; */
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.dark {
+    color: white;
+    background-color: black;
+}

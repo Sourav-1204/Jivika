@@ -1,0 +1,123 @@
+.cart-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px auto;
+}
+
+.cart-container .cart-container-left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-container .cart-container-left h1 {
+    margin: 40px 0;
+}
+
+.cart-container-inner1 {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-container-inner1 .cart-item-card {
+    width: 70%;
+    padding: 10px;
+    background-color: #ffafcb;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.cart-container-inner1 .cart-item-card img {
+    width: 10%;
+    margin-right: 15px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.cart-container-left .cart-item-card .cart-item-card-details {
+    width: 90%;
+    /* display: flex;
+    flex-direction: column;
+    align-items: flex-start; */
+}
+
+.cart-item-card .cart-item-card-details .price {
+    font-size: 17px;
+    color: #0051ff;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.cart-item-card .cart-item-card-details p {
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.cart-item-card button {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    font-size: 15px;
+    background-color: gold;
+    outline: none;
+    cursor: pointer;
+}
+
+.cart-container-inner1 .cart-item-card input {
+    width: 10%;
+    margin-right: 30px;
+    outline: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+}
+
+.cart-container .cart-container-right {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.cart-container .cart-container-right .your-cart-details {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 10px;
+}
+
+.cart-container-right .your-cart-details .head-price {
+    font-size: 25px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.your-cart-details button {
+    width: 30%;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    outline: none;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 5px;
+}
+
+.your-cart-details button:active {
+    box-shadow: 5px 5px 4px #8d8d8d;
+}

@@ -1,0 +1,85 @@
+.place-order-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px auto;
+}
+
+.place-order-container .place-order-container-left {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.place-order-container-left p {
+    font-size: 40px;
+}
+
+.place-order-container-left .delivery-input-container {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    justify-items: center;
+    padding: 12px;
+}
+
+.place-order-container-left .delivery-input-container input {
+    width: 100%;
+    padding: 15px 15px;
+    font-size: 17px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    color: #c10c42;
+    background-color: #d3e5ff;
+}
+
+.place-order-container-left .delivery-input-container input::placeholder {
+    color: #c10c42;
+}
+
+.place-order-container-left .delivery-input-container input:focus {
+    box-shadow: 5px 7px 5px pink;
+}
+
+.place-order-container-left button {
+    width: 60%;
+    font-size: 20px;
+    padding: 12px 12px;
+    border-radius: 6px;
+    outline: none;
+    color: white;
+    background-color: #01011b;
+
+}
+
+.place-order-container .place-order-container-right {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.place-order-container-right .cartotal-details {
+    width: 100%;
+    padding: 10px;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+.place-order-container-right .cartotal-details h5 {
+    font-size: 40px;
+    font-weight: 100;
+    margin-bottom: 20px;
+}
+
+.place-order-container-right .icon-container-inner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}

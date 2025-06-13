@@ -1,0 +1,144 @@
+.login-container-main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container-sub {
+    width: 25%;
+    margin: 100px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px 2px #b5b5b5;
+    background-color: #ececec;
+}
+
+.login-container-sub p {
+    font-size: 40px;
+    font-family: "gilroy-bold";
+    font-weight: 100;
+    margin: 20px 0;
+}
+
+.login-container-sub .signup-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container-sub .login-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container-sub .login-input-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.login-container-sub .login-input-container input {
+    width: 100%;
+    font-size: 17px;
+    padding: 12px 15px;
+    /* border-radius: 8px; */
+    border: none;
+    outline: none;
+}
+
+.login-container-sub .login-input-container input:focus {
+    box-shadow: 0 4px 5px -2px #414141;
+}
+
+.login-container-sub .login-input-container button {
+    width: 50%;
+    font-size: 17px;
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 2px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.login-container-sub .forget-signup {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.login-container-sub .forget-signup p {
+    font-size: 15px;
+    font-family: "gilroy";
+    color: #6f6f6f;
+    cursor: pointer;
+}
+
+.login-container-sub .forget-signup p:active {
+    transform: scale(0.9);
+    transition: transform 0s ease-in-out;
+}
+
+.login-container-sub .signup-input-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.login-container-sub .signup-input-container input {
+    width: 100%;
+    font-size: 17px;
+    padding: 12px 15px;
+    /* border-radius: 8px; */
+    border: none;
+    outline: none;
+}
+
+.login-container-sub .signup-input-container input:focus {
+    box-shadow: 0 4px 5px -2px #414141;
+}
+
+.login-container-sub .signup-input-container button {
+    width: 50%;
+    font-size: 17px;
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 2px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.login-container-sub .already-login {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.login-container-sub .already-login p {
+    font-size: 15px;
+    font-family: "gilroy";
+    color: #6f6f6f;
+    cursor: pointer;
+}
+
+.login-container-sub .already-login p:active {
+    transform: scale(0.9);
+    transition: transform 0s ease-in-out;
+}
