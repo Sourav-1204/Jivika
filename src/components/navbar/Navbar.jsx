@@ -19,7 +19,7 @@ export default function Navbar() {
   return (
     <div className="navbar-container">
       <NavLink to={"/"}>
-        <img src="/logo3.svg" alt="" />
+        <img src="/logo1.svg" alt="" />
       </NavLink>
       <div className="menu-on-big-screen">
         <div
