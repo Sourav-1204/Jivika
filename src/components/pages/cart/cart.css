@@ -7,14 +7,14 @@
     margin: 20px auto;
 }
 
-.cart-container .cart-container-left {
+.cart-container-left {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.cart-container .cart-container-left h1 {
+.cart-container-left h1 {
     margin: 40px 0;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .cart-container-inner1 .cart-item-card {
-    width: 70%;
+    width: 60%;
     padding: 10px;
     background-color: #ffafcb;
     border-radius: 20px;
@@ -39,14 +39,11 @@
     width: 10%;
     margin-right: 15px;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 14px;
 }
 
-.cart-container-left .cart-item-card .cart-item-card-details {
+.cart-item-card .cart-item-card-details {
     width: 90%;
-    /* display: flex;
-    flex-direction: column;
-    align-items: flex-start; */
 }
 
 .cart-item-card .cart-item-card-details .price {
@@ -74,7 +71,7 @@
 
 .cart-container-inner1 .cart-item-card input {
     width: 10%;
-    margin-right: 30px;
+    margin-right: 20px;
     outline: none;
     cursor: pointer;
     padding: 5px;
@@ -83,7 +80,7 @@
     border: none;
 }
 
-.cart-container .cart-container-right {
+.cart-container-right {
     width: 100%;
     margin-top: 20px;
     display: flex;
@@ -92,7 +89,7 @@
     gap: 20px;
 }
 
-.cart-container .cart-container-right .your-cart-details {
+.cart-container-right .your-cart-details {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -107,7 +104,7 @@
     margin: 10px 0;
 }
 
-.your-cart-details button {
+.cart-container-right .your-cart-details button {
     width: 30%;
     font-size: 16px;
     background-color: black;
@@ -118,6 +115,44 @@
     border-radius: 5px;
 }
 
-.your-cart-details button:active {
+.cart-container-right .your-cart-details button:active {
     box-shadow: 5px 5px 4px #8d8d8d;
+}
+
+@media screen and (max-width:550px) {
+    .cart-container-left h2 {
+        width: 80%;
+        color: #ae0906;
+    }
+
+    .cart-container-inner1 {
+        width: 95%;
+    }
+
+    .cart-container-inner1 .cart-item-card {
+        width: 100%;
+    }
+
+    .cart-container-inner1 .cart-item-card img {
+        width: 25%;
+        margin-right: 7px;
+    }
+
+    .cart-container-inner1 .cart-item-card input {
+        margin-right: 5px;
+        width: 25px;
+    }
+
+    .cart-container-right {
+        align-items: center;
+    }
+
+    .cart-container-right .your-cart-details {
+        width: 90%;
+        margin: 0;
+    }
+
+    .cart-container-right .your-cart-details button {
+        width: 50%;
+    }
 }

@@ -10,11 +10,11 @@ function Contact() {
   return (
     <div className="contact-main-container">
       <div className="contact-sub">
+        <h5>CONTACT US</h5>
         <div className="contact-sub-left">
           <img src="./contact-img1.jpg" alt="" />
         </div>
         <div className="contact-sub-right">
-          <h5>CONTACT US</h5>
           <div className="contact-info">
             <p>
               <b>Email:</b> support@jivika.com
@@ -35,16 +35,16 @@ function Contact() {
               <p>Connect With Us:</p>
               <ul>
                 <li>
-                  <FaInstagram color="#EE1346"/>
+                  <FaInstagram color="#EE1346" />
                 </li>
                 <li>
-                  <FaFacebook color="darkblue"/>
+                  <FaFacebook color="darkblue" />
                 </li>
                 <li>
                   <FaGithub />
                 </li>
                 <li>
-                  <FaTwitter color="blue"/>
+                  <FaTwitter color="blue" />
                 </li>
               </ul>
             </div>

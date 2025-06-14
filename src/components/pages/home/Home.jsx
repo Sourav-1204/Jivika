@@ -2,8 +2,7 @@ import React from "react";
 import Hero from "../Hero/Hero";
 import Product from "../product/Product";
 import OurPolicy from "../../ourPolicy";
-import NewsLetterBox from "../../NewsLetterBox";
-import Footer from "../../footer/Footer";
+import NewsLetterBox from "../../newsletter/NewsLetterBox";
 
 function Home() {
   return (

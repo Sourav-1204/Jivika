@@ -110,3 +110,32 @@ p b {
     font-size: 18px;
     margin-bottom: 10px;
 }
+
+@media screen and (max-width:550px) {
+    .about-container-sub{
+        width : 80%;
+    }
+    .about-container-sub .about-up {
+        flex-direction: column;
+    }
+
+    .about-container-sub .about-up-left {
+        width: 100%;
+    }
+
+    .about-container-sub .about-up-right {
+        width: 100%;
+    }
+
+    .about-bottom .about-bottom-sub {
+        width: 100%;
+    }
+
+    .about-bottom-sub ul {
+        flex-direction: column;
+    }
+
+    .about-bottom-sub ul li {
+        width: 100%;
+    }
+}

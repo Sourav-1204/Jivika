@@ -92,9 +92,9 @@ export default function Navbar() {
           }}
           onClick={() => setSideMenu(!sideMenu)}
         />
-        <div onClick={() => setDarkMode(!darkMode)}>
+        {/* <div onClick={() => setDarkMode(!darkMode)}>
           {darkMode ? <MdDarkMode /> : <CiLight />}
-        </div>
+        </div> */}
         <ul>
           <li>
             <input

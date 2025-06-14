@@ -43,7 +43,7 @@ function Cart() {
                   />
                   <MdDelete
                     onClick={() => handleRemoveFromCart(item.id)}
-                    size={"30px"}
+                    size={"37px"}
                   />
                 </div>
               ))

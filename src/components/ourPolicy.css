@@ -1,0 +1,27 @@
+.policy-container {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 30px auto;
+}
+
+.policy-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.policy-wrapper h3 {
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+@media screen and (max-width : 550px) {
+    .policy-container {
+        width : 90%;
+        flex-direction: column;
+    }
+    .policy-wrapper {
+        margin : 20px 0;
+    }
+}

@@ -16,6 +16,7 @@
 
 .place-order-container-left p {
     font-size: 40px;
+    font-weight: 600;
 }
 
 .place-order-container-left .delivery-input-container {
@@ -82,4 +83,41 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+@media screen and (max-width : 550px) {
+    .place-order-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .place-order-container .place-order-container-left {
+        width: 90%;
+        text-align: center;
+    }
+
+    .place-order-container-left p {
+        font-size: 35px;
+        margin-top: 10px;
+    }
+
+    .place-order-container-left .delivery-input-container {
+        width: 90%;
+        grid-template-columns: none;
+        gap: 10px;
+        padding: 0;
+    }
+
+    .place-order-container-left .delivery-input-container input {
+        font-size: 16px;
+    }
+
+    .place-order-container-left button {
+        width: 50%;
+        font-size: 17px;
+    }
+
+    .place-order-container .place-order-container-right {
+        width: 100%;
+    }
 }

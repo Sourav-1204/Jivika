@@ -21,8 +21,14 @@
 
 @media screen and (max-width : 550px) {
     .product-list-render {
-        width : 100%;
+        width: 100%;
         justify-items: center;
         grid-template-columns: repeat(2, 1fr);
+        padding : 10px;
+        
+    }
+
+    .product-container h1 {
+        margin-left: 20px;
     }
 }

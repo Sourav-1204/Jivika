@@ -78,20 +78,22 @@ export default function ProductDetails() {
             <p>{productData.rating}</p>
             <RatingStars rating={productData.rating} />
           </div>
-          <button
-            onClick={() => {
-              handleAddToCart(productData.id);
-            }}
-          >
-            Add To Cart
-          </button>
-          <button
-            onClick={() => {
-              handleRemoveFromCart(productData.id);
-            }}
-          >
-            Remove From Cart
-          </button>
+          <div className="btn-container">
+            <button
+              onClick={() => {
+                handleAddToCart(productData.id);
+              }}
+            >
+              Add To Cart
+            </button>
+            <button
+              onClick={() => {
+                handleRemoveFromCart(productData.id);
+              }}
+            >
+              Remove From Cart
+            </button>
+          </div>
         </div>
       </div>
     </div>

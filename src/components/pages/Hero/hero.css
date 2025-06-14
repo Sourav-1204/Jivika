@@ -22,12 +22,6 @@
     font-size: 50px;
 }
 
-.left-container p:hover,
-h2:hover {
-    transform: scale(1.1);
-    transition: transform 0.2s ease-in;
-}
-
 .hero-container .right-container {
     width: 50%;
     height: 100%;

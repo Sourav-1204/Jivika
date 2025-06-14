@@ -142,3 +142,9 @@
     transform: scale(0.9);
     transition: transform 0s ease-in-out;
 }
+
+@media screen and (max-width:550px) {
+    .login-container-sub {
+        width: 80%;
+    }
+}
