@@ -4,11 +4,12 @@ import { ShopContext } from "../../context/context";
 import "./productDetails.css";
 import { GrLinkNext } from "react-icons/gr";
 import { GrLinkPrevious } from "react-icons/gr";
+import { MdCurrencyRupee } from "react-icons/md";
 import RatingStars from "./rating";
 
 export default function ProductDetails() {
   const { productId } = useParams();
-  const { products, handleAddToCart, handleRemoveFromCart, addToCart } =
+  const { products, handleAddToCart, handleRemoveFromCart, toRupees } =
     useContext(ShopContext);
   const [loading, setLoading] = useState(false);
   const [productData, setProductData] = useState(false);
@@ -71,8 +72,9 @@ export default function ProductDetails() {
           <p className="title">{productData.title}</p>
           <p className="brand">{productData.brand}</p>
           <p className="description">{productData.description}</p>
-          <p style={{ color: "blue" }} className="price">
-            ${productData.price}
+          <p style={{ color: "#6565F6" }} className="price">
+            <MdCurrencyRupee />
+            {Math.floor(toRupees(productData.price)) + ".00"}
           </p>
           <div className="rating">
             <p>{productData.rating}</p>

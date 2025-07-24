@@ -1,5 +1,4 @@
 import { MdStarRate } from "react-icons/md";
-import "./rating.css";
 
 const Star = ({ filled }) => (
   <span style={{ position: "relative", display: "inline-block" }}>

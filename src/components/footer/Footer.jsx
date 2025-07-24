@@ -7,7 +7,7 @@ export default function Footer() {
     <div className="footer-main-container">
       <div className="footer-container">
         <div className="sub-container1">
-          <img src="/logo1.svg" />
+          <img src="/logo2.svg" />
           <p>
             We're more than just an online store—we're a community that values
             quality, trust, and seamless shopping. Thanks for being a part of

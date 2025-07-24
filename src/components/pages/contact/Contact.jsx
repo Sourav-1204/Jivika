@@ -9,12 +9,12 @@ import { FaGithub } from "react-icons/fa6";
 function Contact() {
   return (
     <div className="contact-main-container">
-      <div className="contact-sub">
-        <h5>CONTACT US</h5>
+      <div className="contact-sub"> 
         <div className="contact-sub-left">
           <img src="./contact-img1.jpg" alt="" />
         </div>
         <div className="contact-sub-right">
+           <h5>CONTACT US</h5>
           <div className="contact-info">
             <p>
               <b>Email:</b> support@jivika.com
@@ -38,7 +38,7 @@ function Contact() {
                   <FaInstagram color="#EE1346" />
                 </li>
                 <li>
-                  <FaFacebook color="darkblue" />
+                  <FaFacebook color="#1130CA" />
                 </li>
                 <li>
                   <FaGithub />

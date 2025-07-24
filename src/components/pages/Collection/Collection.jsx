@@ -10,6 +10,8 @@ function Collection() {
     uniqueCategories,
     products,
     search,
+    handleViewMore,
+    visibleLimit,
   } = useContext(ShopContext);
   const [currentSelectedCategory, setCurrentSelectedCategory] = useState("");
   const [sortCondition, setSortCondition] = useState("relevant");
@@ -101,11 +103,20 @@ function Collection() {
         </div>
         <div className="filtered-poducts-render">
           {filteredItems && filteredItems.length > 0
-            ? filteredItems.map((productItem) => (
-                <ProductCard key={productItem.id} item={productItem} />
-              ))
+            ? filteredItems
+                .slice(0, visibleLimit)
+                .map((productItem) => (
+                  <ProductCard key={productItem.id} item={productItem} />
+                ))
             : null}
         </div>
+        <button
+          disabled={visibleLimit >= products.length || visibleLimit >= filteredItems.length}
+          className="view-more-btn"
+          onClick={handleViewMore}
+        >
+          View More
+        </button>
       </div>
     </div>
   );

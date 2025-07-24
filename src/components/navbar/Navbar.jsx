@@ -19,14 +19,18 @@ export default function Navbar() {
   return (
     <div className="navbar-container">
       <NavLink to={"/"}>
-        <img src="/logo1.svg" alt="" />
+        <img src="/logo2.svg" alt="" />
       </NavLink>
       <div className="menu-on-big-screen">
         <div
           className="darkmode-container"
           onClick={() => setDarkMode(!darkMode)}
         >
-          {darkMode ? <MdDarkMode /> : <CiLight />}
+          {darkMode ? (
+            <MdDarkMode color="#00061B" />
+          ) : (
+            <CiLight color="#00061B" />
+          )}
         </div>
         <ul className="router-container">
           <NavLink to={"/"}>
@@ -54,12 +58,12 @@ export default function Navbar() {
             onClick={() => {
               search ? handleSearch(search) : "";
             }}
-            style={{ fontSize: "27px", color: "#0c4ea0" }}
+            style={{ fontSize: "27px", color: "#00061B" }}
           />
         </div>
         <NavLink to={"/login"}>
           <FaUserCircle
-            style={{ fontSize: "25px", color: "#0c4ea0", marginTop: "5px" }}
+            style={{ fontSize: "25px", color: "#00061B", marginTop: "5px" }}
           />
         </NavLink>
         <NavLink to={"/cart"}>
@@ -69,7 +73,7 @@ export default function Navbar() {
               style={{
                 fontSize: "30px",
                 marginTop: "5px",
-                color: "#0c4ea0",
+                color: "#00061B",
               }}
             />
             {cartItem && cartItem.length > 0 ? <p>{cartItem.length}</p> : null}
@@ -78,25 +82,23 @@ export default function Navbar() {
       </div>
       <IoMenuOutline
         className="menuIcon"
-        style={{ fontSize: "35px", color: "#0c4ea0" }}
+        style={{ fontSize: "35px", color: "#00061B" }}
         onClick={() => setSideMenu(!sideMenu)}
       />
       <div className={`${sideMenu ? "showMenu" : "hide"}`}>
         <ImCross
           style={{
-            position: "relative",
-            top: "50",
-            left: "30",
-            fontSize: "25px",
-            color: "white",
+            position: "static",
+            fontSize: "30px",
+            color: "black",
           }}
           onClick={() => setSideMenu(!sideMenu)}
         />
         {/* <div onClick={() => setDarkMode(!darkMode)}>
           {darkMode ? <MdDarkMode /> : <CiLight />}
         </div> */}
-        <ul>
-          <li>
+        <div className="sub-container">
+          <div className="input-search">
             <input
               className="show"
               type="text"
@@ -107,22 +109,24 @@ export default function Navbar() {
               onClick={() => {
                 search ? handleSearch(search) : "";
               }}
-              style={{ fontSize: "27px", color: "#0c4ea0" }}
+              style={{ fontSize: "27px", color: "#00061B" }}
             />
-          </li>
-          <NavLink to="/" onClick={() => setSideMenu(false)}>
-            <p>Home</p>
-          </NavLink>
-          <NavLink to="/collection" onClick={() => setSideMenu(false)}>
-            <p>Collections</p>
-          </NavLink>
-          <NavLink to="/about" onClick={() => setSideMenu(false)}>
-            <p>About</p>
-          </NavLink>
-          <NavLink to="/contact" onClick={() => setSideMenu(false)}>
-            <p>Contact</p>
-          </NavLink>
-        </ul>
+          </div>
+          <div className="navlink-container">
+            <NavLink to="/" onClick={() => setSideMenu(false)}>
+              <p>Home</p>
+            </NavLink>
+            <NavLink to="/collection" onClick={() => setSideMenu(false)}>
+              <p>Collections</p>
+            </NavLink>
+            <NavLink to="/about" onClick={() => setSideMenu(false)}>
+              <p>About</p>
+            </NavLink>
+            <NavLink to="/contact" onClick={() => setSideMenu(false)}>
+              <p>Contact</p>
+            </NavLink>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -12,12 +12,13 @@ export default function GlobalState({ children }) {
   const [searchedProducts, setSearchedProducts] = useState([]);
   const [cartItem, setCartItem] = useState([]);
   const [addToCart, setAddToCart] = useState(false);
+  const [visibleLimit, setVisibleLimit] = useState(20);
 
   async function fetchProductList() {
     try {
       setLoading(true);
       const apiResponse = await fetch(
-        "https://dummyjson.com/products?limit=70"
+        "https://dummyjson.com/products?limit=100"
       );
       const result = await apiResponse.json();
       if (result && result.products && result.products.length > 0) {
@@ -55,6 +56,17 @@ export default function GlobalState({ children }) {
     setAddToCart(!addToCart);
   }
 
+  function handleViewMore() {
+    if (visibleLimit < products.length) {
+      setVisibleLimit((prev) => prev + 5);
+    }
+  }
+
+  function toRupees(getPrice) {
+    const price = 86 * getPrice;
+    return price;
+  }
+
   return (
     <ShopContext.Provider
       value={{
@@ -74,6 +86,10 @@ export default function GlobalState({ children }) {
         handleRemoveFromCart,
         addToCart,
         setAddToCart,
+        handleViewMore,
+        visibleLimit,
+        setVisibleLimit,
+        toRupees
       }}
     >
       {children}
