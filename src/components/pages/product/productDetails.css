@@ -1,6 +1,7 @@
 .productdetails-container {
     width: 100%;
     display: flex;
+    justify-content: center;
     padding-top: 50px;
     gap: 40px;
 }
@@ -75,6 +76,8 @@
 
 .productDetails-right {
     width: 50%;
+    display: flex;
+    justify-content: end;
     padding: 10px;
     border-radius: 10px;
 }
