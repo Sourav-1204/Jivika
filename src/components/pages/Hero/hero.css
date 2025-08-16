@@ -52,6 +52,7 @@
   }
   .hero-container .left-container {
     width: 100%;
+    height: 50%;
   }
   .left-container-content {
     font-weight: 700;
@@ -63,8 +64,10 @@
 
   .hero-container .right-container {
     width: 100%;
+    height: 50%;
   }
   .hero-container .right-container img {
     width: 100%;
+    height: 100%;
   }
 }

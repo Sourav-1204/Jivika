@@ -1,13 +1,17 @@
 import React from "react";
 import "./footer.css";
 import { LuCopyright } from "react-icons/lu";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Footer() {
+
+  const navigate = useNavigate();
+
   return (
     <div className="footer-main-container">
       <div className="footer-container">
         <div className="sub-container1">
-          <img src="/logo2.svg" />
+          <img src="/logo2.svg" onClick={()=>navigate('/')}/>
           <p>
             We're more than just an online store—we're a community that values
             quality, trust, and seamless shopping. Thanks for being a part of
@@ -17,10 +21,18 @@ export default function Footer() {
         <div className="info-container">
           <p>Company</p>
           <ul>
-            <li>About Us</li>
-            <li>Contact Us</li>
-            <li>FAQs</li>
-            <li>Returns & Refunds</li>
+            <Link to='/about'>
+              <li>About Us</li>
+            </Link>
+            <Link to="/contact">
+              <li>Contact Us</li>
+            </Link>
+            <Link to="/">
+              <li>FAQs</li>
+            </Link>
+            <Link to="/">
+              <li>Returns & Refunds</li>
+            </Link>
           </ul>
         </div>
         <div className="info-container">
@@ -32,9 +44,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="divider"
-        style={{ }}
-      ></div>
+      <div className="divider" style={{}}></div>
       <p className="copyright-p">
         <span>
           <LuCopyright />

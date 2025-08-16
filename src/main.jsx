@@ -6,11 +6,9 @@ import { BrowserRouter, HashRouter } from "react-router-dom";
 import GlobalState from "./components/context/context.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
     <HashRouter>
       <GlobalState>
         <App />
       </GlobalState>
     </HashRouter>
-  </StrictMode>
 );

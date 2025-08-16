@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/pages/home/Home";
 import About from "./components/pages/about/About";
 import Collection from "./components/pages/Collection/Collection";
@@ -9,15 +9,26 @@ import Order from "./components/pages/Orders/Order";
 import PlaceOrder from "./components/pages/placeOrder/PlaceOrder";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "./components/context/context";
 import ProductDetails from "./components/pages/product/productDetails";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+
+  return null;
+};
 
 function App() {
   const { darkMode } = useContext(ShopContext);
   return (
-    <div >
+    <div>
       <Navbar />
+      <ScrollToTop />
       <div className={`${darkMode ? "dark" : ""} body-container`}>
         <Routes>
           <Route path="/" element={<Home />} />

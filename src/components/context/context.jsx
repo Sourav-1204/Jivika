@@ -13,6 +13,7 @@ export default function GlobalState({ children }) {
   const [cartItem, setCartItem] = useState([]);
   const [addToCart, setAddToCart] = useState(false);
   const [visibleLimit, setVisibleLimit] = useState(20);
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   async function fetchProductList() {
     try {
@@ -23,12 +24,22 @@ export default function GlobalState({ children }) {
       const result = await apiResponse.json();
       if (result && result.products && result.products.length > 0) {
         setProducts(result.products);
-        setLoading(false);
         setFilteredItems(result.products);
       }
     } catch (e) {
       console.log(e);
-      setLoading(false);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
+  }
+
+  async function fetchRelatedProducts(getCurrentCategory) {
+    // let cpyProducts = [...products];
+    console.log(getCurrentCategory);
+    if (products && products.length > 0 && getCurrentCategory) {
+      setRelatedProducts(products.filter((item) => item.category === getCurrentCategory));
     }
   }
 
@@ -67,9 +78,12 @@ export default function GlobalState({ children }) {
     return price;
   }
 
+  console.log(relatedProducts, "relatedproducts");
+
   return (
     <ShopContext.Provider
       value={{
+        loading,
         products,
         uniqueCategories,
         filteredItems,
@@ -89,7 +103,9 @@ export default function GlobalState({ children }) {
         handleViewMore,
         visibleLimit,
         setVisibleLimit,
-        toRupees
+        toRupees,
+        fetchRelatedProducts,
+        relatedProducts,
       }}
     >
       {children}

@@ -71,7 +71,7 @@ export default function Navbar() {
             <LiaCartPlusSolid
               className=""
               style={{
-                fontSize: "30px",
+                fontSize: "25px",
                 marginTop: "5px",
                 color: "#00061B",
               }}

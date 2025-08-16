@@ -1,20 +1,24 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import "./product.css";
 import { ShopContext } from "../../context/context";
 import ProductCard from "../../card/ProductCard";
 
 function Product() {
-  const { products, handleViewMore, visibleLimit } = useContext(ShopContext);
+  const { products, handleViewMore, visibleLimit, loading } =
+    useContext(ShopContext);
 
   return (
     <div className="product-container">
       <h1>Latest Collections</h1>
       <div className="product-list-render">
-        {products && products.length > 0
+        {loading ? (
+          <h1 style={{ textAlign: "center" }}>Loading please wait....</h1>
+        ) : null}
+        {!loading && products && products.length > 0
           ? products
               .slice(0, visibleLimit)
               .map((productItem) => (
-                <ProductCard key={productItem.id} item={productItem} />
+                <ProductCard key={productItem.id} item={productItem}/>
               ))
           : null}
       </div>

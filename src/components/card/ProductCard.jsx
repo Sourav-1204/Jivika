@@ -5,21 +5,28 @@ import { useContext, useState } from "react";
 import { ShopContext } from "../context/context";
 
 export default function ProductCard({ item }) {
-  const {toRupees} = useContext(ShopContext);
+  const { toRupees, fetchRelatedProducts } = useContext(ShopContext);
   const navigate = useNavigate();
   function handleClick() {
     navigate(`/products/${item.id}`);
   }
 
   return (
-    <div className="card-container" onClick={handleClick}>
+    <div
+      className="card-container"
+      onClick={() => {
+        handleClick();
+        fetchRelatedProducts(item.category);
+      }}
+    >
       <img src={item.thumbnail} alt={item.title} />
       <div className="product-details">
-        <p>{item.brand}</p> 
+        <p>{item.brand}</p>
         <p>{item.title}</p>
         {/* <p>{item.description}</p> */}
-        <p style={{ color: "#6565F6",display:"flex",alignItems:"center"}}>
-      <MdCurrencyRupee />{Math.floor(toRupees(item.price))}
+        <p style={{ color: "#6565F6", display: "flex", alignItems: "center" }}>
+          <MdCurrencyRupee />
+          {Math.floor(toRupees(item.price))}
         </p>
         <p>{item.category}</p>
       </div>
