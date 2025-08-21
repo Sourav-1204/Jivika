@@ -34,5 +34,13 @@ body {
 
 .dark {
   color: #869ba8;
-  background-color: #00061B;
+  background-color: #00061b;
+}
+
+.showAlert {
+  opacity: 1;
+}
+
+.hideAlert {
+  opacity: 0;
 }

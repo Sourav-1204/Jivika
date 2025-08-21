@@ -8,6 +8,7 @@ import { MdCurrencyRupee } from "react-icons/md";
 import RatingStars from "./rating";
 import Loader from "../../loader/loader";
 import ProductCard from "../../card/ProductCard";
+import AddAlert from "./addAlert";
 
 export default function ProductDetails() {
   const { productId } = useParams();
@@ -17,6 +18,7 @@ export default function ProductDetails() {
     handleRemoveFromCart,
     toRupees,
     relatedProducts,
+    handleAlert,
   } = useContext(ShopContext);
   const [loading, setLoading] = useState(false);
   const [productData, setProductData] = useState(false);
@@ -66,6 +68,8 @@ export default function ProductDetails() {
 
   return !loading && productData ? (
     <div className="productdetails-super">
+      {alert ? <AddAlert /> : null}
+      <AddAlert />
       <div className="productdetails-container">
         <div className="productDetails-left">
           <GrLinkPrevious className="prev-icon" onClick={handleImgSubCount} />
@@ -103,6 +107,7 @@ export default function ProductDetails() {
               <button
                 onClick={() => {
                   handleAddToCart(productData.id);
+                  handleAlert("Add");
                 }}
               >
                 Add To Cart
@@ -110,6 +115,7 @@ export default function ProductDetails() {
               <button
                 onClick={() => {
                   handleRemoveFromCart(productData.id);
+                  handleAlert("Remove");
                 }}
               >
                 Remove From Cart
@@ -118,9 +124,9 @@ export default function ProductDetails() {
           </div>
         </div>
       </div>
-      <div className="w-[90%] border border-1.5 bg-gray-500" />
+      <div className="w-[80%] border border-1.5 bg-gray-500 ruler" />
       {relatedProducts.length > 0 && !loading ? (
-        <div className="w-full md:h-[450px] flex flex-col gap-10 items-center justify-center">
+        <div className="w-full md:h-[450px] flex flex-col gap-10 items-center justify-center mt-[20px]">
           <div>
             <h3 className="md:text-5xl text-3xl font-semibold">
               Related Products
@@ -129,7 +135,7 @@ export default function ProductDetails() {
 
           <div className="md:w-[80%] grid md:grid-cols-5 grid-cols-2 place-items-center gap-10">
             {relatedProducts
-              .splice(0,Math.floor(Math.random() * 5))
+              .splice(0, Math.floor(Math.random() * 5))
               .map((item) => (
                 <ProductCard key={item.id} item={item} />
               ))}

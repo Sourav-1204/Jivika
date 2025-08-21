@@ -70,12 +70,12 @@
   font-family: "gilroy-bold";
   font-size: 13px;
   font-weight: 100;
-  padding: 5px;
-  top: 0;
-  right: 0;
-  border-radius: 10px;
-  color: red;
-  background-color: #a7a7a75a;
+  padding: 2px;
+  top: -10px;
+  right: 5px;
+  border-radius: 5px;
+  color: rgb(21, 0, 255);
+  /* background-color: #a7a7a75a; */
 }
 
 .menu-on-big-screen input:focus {

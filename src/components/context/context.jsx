@@ -14,6 +14,8 @@ export default function GlobalState({ children }) {
   const [addToCart, setAddToCart] = useState(false);
   const [visibleLimit, setVisibleLimit] = useState(20);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [alert, setAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
 
   async function fetchProductList() {
     try {
@@ -39,7 +41,9 @@ export default function GlobalState({ children }) {
     // let cpyProducts = [...products];
     console.log(getCurrentCategory);
     if (products && products.length > 0 && getCurrentCategory) {
-      setRelatedProducts(products.filter((item) => item.category === getCurrentCategory));
+      setRelatedProducts(
+        products.filter((item) => item.category === getCurrentCategory)
+      );
     }
   }
 
@@ -78,7 +82,23 @@ export default function GlobalState({ children }) {
     return price;
   }
 
-  console.log(relatedProducts, "relatedproducts");
+  function handleAlert(getStatus) {
+    if (getStatus === "Add") {
+      setAlert(true);
+      setAlertMsg("Added to cart!");
+      setTimeout(() => {
+        setAlert(false);
+        setAlertMsg("");
+      }, 2000);
+    } else if (getStatus === "Remove") {
+      setAlert(true);
+      setAlertMsg("Removed from cart!");
+      setTimeout(() => {
+        setAlert(false);
+        setAlertMsg("");
+      }, 2000);
+    }
+  }
 
   return (
     <ShopContext.Provider
@@ -106,6 +126,10 @@ export default function GlobalState({ children }) {
         toRupees,
         fetchRelatedProducts,
         relatedProducts,
+        handleAlert,
+        alert,
+        alertMsg,
+        setAlert,
       }}
     >
       {children}
