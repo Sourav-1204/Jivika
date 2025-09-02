@@ -12,6 +12,7 @@ function Collection() {
     search,
     handleViewMore,
     visibleLimit,
+    errorMsg
   } = useContext(ShopContext);
   const [currentSelectedCategory, setCurrentSelectedCategory] = useState("");
   const [sortCondition, setSortCondition] = useState("relevant");
@@ -53,6 +54,14 @@ function Collection() {
         applyFilter();
         break;
     }
+  }
+
+   if (errorMsg) {
+    return (
+      <div className="w-full md:h-[600px] h-[450px] flex items-center justify-center">
+        <h1 className="md:text-5xl text-4xl font-bold text-red-500">{errorMsg}</h1>
+      </div>
+    );
   }
 
   useEffect(() => {

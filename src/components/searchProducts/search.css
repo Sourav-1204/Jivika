@@ -1,0 +1,15 @@
+
+.result{
+  padding: 10px 15px;
+  max-height: 250px;
+  overflow-y: scroll;
+  z-index: 10;
+}
+.result li{
+  padding: 3px 10px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.result li:hover{
+background-color: #fafae3;
+}

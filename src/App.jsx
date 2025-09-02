@@ -12,6 +12,7 @@ import Footer from "./components/footer/Footer";
 import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "./components/context/context";
 import ProductDetails from "./components/pages/product/productDetails";
+import SearchResults from "./components/pages/SearchResults/SearchResults";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -40,6 +41,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/orders" element={<Order />} />
           <Route path="/place-orders" element={<PlaceOrder />} />
+          <Route path="/search/results" element={<SearchResults />} />
         </Routes>
         <Footer />
       </div>

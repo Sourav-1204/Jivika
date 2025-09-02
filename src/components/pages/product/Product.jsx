@@ -5,10 +5,18 @@ import ProductCard from "../../card/ProductCard";
 import Loader from "../../loader/loader";
 
 function Product() {
-  const { products, handleViewMore, visibleLimit, loading } =
+  const { products, handleViewMore, visibleLimit, loading, errorMsg } =
     useContext(ShopContext);
 
-  if (loading) {
+  if (errorMsg) {
+    return (
+      <div className="w-full md:h-[600px] h-[450px] flex items-center justify-center">
+        <h1 className="md:text-5xl text-4xl font-bold text-red-500">{errorMsg}</h1>
+      </div>
+    );
+  }
+
+  if (loading && !errorMsg) {
     return (
       <div className="w-full md:h-[600px] h-[450px] flex items-center justify-center">
         <h1 className="md:text-5xl text-4xl">
@@ -22,7 +30,7 @@ function Product() {
     <div className="product-container">
       <h1>Latest Collections</h1>
       <div className="product-list-render">
-        {!loading && products && products.length > 0
+        {!loading && !errorMsg && products && products.length > 0
           ? products
               .slice(0, visibleLimit)
               .map((productItem) => (

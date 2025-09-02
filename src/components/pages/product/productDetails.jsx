@@ -9,6 +9,7 @@ import RatingStars from "./rating";
 import Loader from "../../loader/loader";
 import ProductCard from "../../card/ProductCard";
 import AddAlert from "./addAlert";
+import { AiOutlineConsoleSql } from "react-icons/ai";
 
 export default function ProductDetails() {
   const { productId } = useParams();
@@ -27,8 +28,12 @@ export default function ProductDetails() {
   async function fetchProductData() {
     try {
       setLoading(true);
-      let data = products.filter((item) => item.id.toString() === productId);
-      setProductData(data[0]);
+      const apiResponse = await fetch(
+        `https://dummyjson.com/products/${productId}`
+      );
+      const result = await apiResponse.json();
+      console.log(result, "result in product details");
+      setProductData(result);
     } catch (e) {
       console.log(e);
     } finally {
@@ -105,6 +110,7 @@ export default function ProductDetails() {
             </div>
             <div className="btn-container">
               <button
+                type="button"
                 onClick={() => {
                   handleAddToCart(productData.id);
                   handleAlert("Add");
@@ -113,6 +119,7 @@ export default function ProductDetails() {
                 Add To Cart
               </button>
               <button
+                type="button"
                 onClick={() => {
                   handleRemoveFromCart(productData.id);
                   handleAlert("Remove");
@@ -134,11 +141,9 @@ export default function ProductDetails() {
           </div>
 
           <div className="md:w-[80%] grid md:grid-cols-5 grid-cols-2 place-items-center gap-10">
-            {relatedProducts
-              .splice(0, Math.floor(Math.random() * 5))
-              .map((item) => (
-                <ProductCard key={item.id} item={item} />
-              ))}
+            {relatedProducts.splice(0, 5).map((item) => (
+              <ProductCard key={item.id} item={item} />
+            ))}
           </div>
         </div>
       ) : null}

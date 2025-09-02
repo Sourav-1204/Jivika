@@ -5,10 +5,9 @@ export const ShopContext = createContext();
 export default function GlobalState({ children }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const [filteredItems, setFilteredItems] = useState([]);
-  const [search, setSearch] = useState("");
-  const [searchParam, setSearchParam] = useState(false);
   const [searchedProducts, setSearchedProducts] = useState([]);
   const [cartItem, setCartItem] = useState([]);
   const [addToCart, setAddToCart] = useState(false);
@@ -25,11 +24,13 @@ export default function GlobalState({ children }) {
       );
       const result = await apiResponse.json();
       if (result && result.products && result.products.length > 0) {
+        setErrorMsg("");
         setProducts(result.products);
         setFilteredItems(result.products);
       }
     } catch (e) {
       console.log(e);
+      setErrorMsg("Error occured : "+e.message);
     } finally {
       setTimeout(() => {
         setLoading(false);
@@ -99,21 +100,20 @@ export default function GlobalState({ children }) {
       }, 2000);
     }
   }
+  
+  // console.log(errorMsg,"errormsg");
 
   return (
     <ShopContext.Provider
       value={{
         loading,
+        errorMsg,
         products,
         uniqueCategories,
         filteredItems,
         setFilteredItems,
         darkMode,
         setDarkMode,
-        searchParam,
-        setSearchParam,
-        search,
-        setSearch,
         searchedProducts,
         handleAddToCart,
         cartItem,
