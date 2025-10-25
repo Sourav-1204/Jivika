@@ -1,15 +1,32 @@
-
-.result{
-  padding: 10px 15px;
+.result {
+  padding: 10px;
   max-height: 250px;
   overflow-y: scroll;
   z-index: 10;
 }
-.result li{
-  padding: 3px 10px;
+.result li {
+  padding: 3px 6px;
   cursor: pointer;
   pointer-events: auto;
 }
-.result li:hover{
-background-color: #fafae3;
+.result li:hover {
+  background-color: #fafae3;
+}
+
+.placeholder-animate {
+  position: absolute;
+  color: #4f4647;
+  pointer-events: none;
+  animation: slideUpFade 0.8s ease-in-out;
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

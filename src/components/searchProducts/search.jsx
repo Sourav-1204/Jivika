@@ -10,8 +10,27 @@ export default function Search() {
   const [showResult, setShowResult] = useState(false);
   const [cache, setCache] = useState({});
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [index, setIndex] = useState(0);
+  const [animateKey, setAnimateKey] = useState(0);
 
   const navigate = useNavigate();
+
+  const placeholderText = [
+    "Search for Products...",
+    "Mobiles",
+    "Kitchen",
+    "Sports",
+    "School",
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % placeholderText.length);
+      setAnimateKey((prev) => prev + 1);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   async function fetchSuggestionResult() {
     if (cache[input]) {
@@ -84,21 +103,29 @@ export default function Search() {
       });
     }
   }
-  console.log(searchResult, input, activeIndex, "result activeindex");
+
   return (
     <div className="md:w-full w-[80%] flex flex-col justify-center items-center search">
       <div className="relative w-full flex flex-col justify-center items-center">
-        <div className="w-full flex justify-between items-center border rounded-sm bg-[#e8e8e8] overflow-hidden">
+        <div className="w-full flex justify-between items-center border rounded-lg bg-[#e8e8e8] overflow-hidden relative">
+          {input === "" && (
+            <span
+              className="absolute left-[15px] placeholder-animate"
+              key={animateKey}
+            >
+              {placeholderText[index]}
+            </span>
+          )}
           <input
             type="text"
             value={input}
-            placeholder="Search"
             onChange={(e) => setInput(e.target.value)}
             onFocus={() => setShowResult(true)}
             onBlur={() => setShowResult(false)}
             onKeyDown={handleKeydown}
-            className="w-[80%] py-3 px-4 outline-0"
+            className={`w-[80%] py-3 px-3 outline-0 transition-opacity duration-500`}
           />
+
           <div
             className="md:w-[15%] w-[20%] py-3 px-4 bg-[#9cb8b7] flex items-center justify-center border-l-1"
             onClick={handleSearchClick}
@@ -114,9 +141,12 @@ export default function Search() {
                 onMouseDown={() => {
                   setInput(item.title);
                 }}
-                className={`${index === activeIndex ? "bg-[#fafae3]" : ""}`}
+                className={`${
+                  index === activeIndex ? "bg-[#fafae3]" : ""
+                } flex gap-3`}
               >
-                {item.title}
+                <img src={item.thumbnail} alt="" className="max-w-7" />
+                <span>{item.title}</span>
               </li>
             ))}
           </ul>

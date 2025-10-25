@@ -104,7 +104,6 @@
     height: 140px;
     flex-direction: column;
     justify-content: space-evenly;
-    /* max-height: 80px; */
   }
 
   .navbar-container img {
