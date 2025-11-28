@@ -30,7 +30,7 @@ export default function GlobalState({ children }) {
       }
     } catch (e) {
       console.log(e);
-      setErrorMsg("Error occured : "+e.message);
+      setErrorMsg("Error occured : " + e.message);
     } finally {
       setTimeout(() => {
         setLoading(false);
@@ -59,9 +59,18 @@ export default function GlobalState({ children }) {
 
   function handleAddToCart(getId) {
     const dummyProduct = products.find((item) => item.id === getId);
-    if (dummyProduct && !cartItem.some((item) => item.id === getId)) {
-      setCartItem([...cartItem, dummyProduct]);
+
+    // Check if product already exists in cart
+    const alreadyInCart = cartItem.some((item) => item.id === getId);
+
+    if (dummyProduct && !alreadyInCart) {
+      const productWithQuantity = {
+        ...dummyProduct,
+        quantity: 1, // Add quantity field
+      };
+      setCartItem([...cartItem, productWithQuantity]);
     }
+
     setAddToCart(!addToCart);
   }
 
@@ -100,7 +109,7 @@ export default function GlobalState({ children }) {
       }, 2000);
     }
   }
-  
+
   // console.log(errorMsg,"errormsg");
 
   return (

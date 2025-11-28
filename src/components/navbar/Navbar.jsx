@@ -1,17 +1,18 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
-import { IoIosSearch } from "react-icons/io";
 import { LiaCartPlusSolid } from "react-icons/lia";
-import { IoMenuOutline } from "react-icons/io5";
+import { RiMenu3Line } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
-import { ShopContext } from "../context/context";
+import { ShopContext } from "../../context/context";
 import Search from "../searchProducts/search";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
+  const { count } = useSelector((state) => state.cart);
   const { cartItem } = useContext(ShopContext);
   const { darkMode, setDarkMode } = useContext(ShopContext);
   const [sideMenu, setSideMenu] = useState(false);
@@ -42,9 +43,7 @@ export default function Navbar() {
             </NavLink>
           </ul>
           <NavLink to={"/login"}>
-            <FaUserCircle
-              style={{ fontSize: "25px", color: "#00061B", marginTop: "5px" }}
-            />
+            <FaUserCircle style={{ fontSize: "25px", color: "#00061B" }} />
           </NavLink>
           <NavLink to={"/cart"}>
             <div className="cart-icon-container">
@@ -52,33 +51,26 @@ export default function Navbar() {
                 className=""
                 style={{
                   fontSize: "25px",
-                  marginTop: "5px",
                   color: "#00061B",
                 }}
               />
-              {cartItem && cartItem.length > 0 ? (
-                <p>{cartItem.length}</p>
-              ) : null}
+              {count > 0 ? <p>{count}</p> : null}
             </div>
           </NavLink>
         </div>
-        <IoMenuOutline
+        <RiMenu3Line
           className="menuIcon"
-          style={{ fontSize: "35px", color: "#00061B" }}
-          onClick={() => setSideMenu(!sideMenu)}
+          style={{ fontSize: "25px", color: "#00061B" }}
+          onClick={() => setSideMenu(true)}
         />
       </div>
       <div className="md:w-[40%] w-full flex justify-center items-center">
         <Search className="" />
       </div>
-      <div className={`${sideMenu ? "showMenu" : "hide"}`}>
+      <div className={`sidebar ${sideMenu ? "activeMenu" : ""}`}>
         <ImCross
-          style={{
-            position: "static",
-            fontSize: "30px",
-            color: "black",
-          }}
-          onClick={() => setSideMenu(!sideMenu)}
+          className="size-6 m-6 mt-10"
+          onClick={() => setSideMenu(false)}
         />
         {/* <div onClick={() => setDarkMode(!darkMode)}>
           {darkMode ? <MdDarkMode /> : <CiLight />}

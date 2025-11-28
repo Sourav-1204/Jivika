@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./placeorder.css";
-import CartTotal from "../../cartTotal/CartTotal";
+import CartTotal from "../cartTotal/CartTotal";
 import { FaCcPaypal } from "react-icons/fa";
 import { FaCcApplePay } from "react-icons/fa";
 import { FaCcAmazonPay } from "react-icons/fa";

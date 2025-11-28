@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./collection.css";
 import { ShopContext } from "../../context/context";
-import ProductCard from "../../card/ProductCard";
+import ProductCard from "../../components/card/ProductCard";
 
 function Collection() {
   const {

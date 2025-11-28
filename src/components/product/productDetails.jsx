@@ -6,40 +6,36 @@ import { GrLinkNext } from "react-icons/gr";
 import { GrLinkPrevious } from "react-icons/gr";
 import { MdCurrencyRupee } from "react-icons/md";
 import RatingStars from "./rating";
-import Loader from "../../loader/loader";
-import ProductCard from "../../card/ProductCard";
+import Loader from "../../components/loader/loader";
+import ProductCard from "../../components/card/ProductCard";
 import AddAlert from "./addAlert";
-import { AiOutlineConsoleSql } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../../features/cart/cartSlice";
 
 export default function ProductDetails() {
   const { productId } = useParams();
-  const {
-    products,
-    handleAddToCart,
-    handleRemoveFromCart,
-    toRupees,
-    relatedProducts,
-    handleAlert,
-  } = useContext(ShopContext);
+
+  const { cartItems } = useSelector((state) => state.cart);
+  const { items } = useSelector((state) => state.products);
+
+  const dispatch = useDispatch();
+  console.log(cartItems);
+  const { products, relatedProducts, handleAlert } = useContext(ShopContext);
+
   const [loading, setLoading] = useState(false);
   const [productData, setProductData] = useState(false);
   const [imgCount, setImgCount] = useState(0);
 
-  async function fetchProductData() {
+  function fetchProductData() {
     try {
       setLoading(true);
-      const apiResponse = await fetch(
-        `https://dummyjson.com/products/${productId}`
+      const product = items.find(
+        (product) => JSON.stringify(product.id) === productId
       );
-      const result = await apiResponse.json();
-      console.log(result, "result in product details");
-      setProductData(result);
+      setProductData(product);
+      setLoading(false);
     } catch (e) {
       console.log(e);
-    } finally {
-      setTimeout(() => {
-        setLoading(false);
-      }, 3 * 1000);
     }
   }
 
@@ -102,7 +98,7 @@ export default function ProductDetails() {
             <p className="description">{productData.description}</p>
             <p style={{ color: "#6565F6" }} className="price">
               <MdCurrencyRupee />
-              {Math.floor(toRupees(productData.price)) + ".00"}
+              {productData.price}
             </p>
             <div className="rating">
               <p>{productData.rating}</p>
@@ -112,16 +108,18 @@ export default function ProductDetails() {
               <button
                 type="button"
                 onClick={() => {
-                  handleAddToCart(productData.id);
+                  dispatch(addToCart(productData));
                   handleAlert("Add");
                 }}
               >
                 Add To Cart
               </button>
               <button
+                className="disabled:cursor-not-allowed"
                 type="button"
+                disabled={cartItems.some((item) => item.id != productData.id)}
                 onClick={() => {
-                  handleRemoveFromCart(productData.id);
+                  dispatch(removeFromCart(productData.id));
                   handleAlert("Remove");
                 }}
               >

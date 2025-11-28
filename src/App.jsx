@@ -1,18 +1,19 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import Home from "./components/pages/home/Home";
-import About from "./components/pages/about/About";
-import Collection from "./components/pages/Collection/Collection";
-import Contact from "./components/pages/contact/Contact";
-import Cart from "./components/pages/cart/Cart";
-import Login from "./components/pages/login/Login";
-import Order from "./components/pages/Orders/Order";
-import PlaceOrder from "./components/pages/placeOrder/PlaceOrder";
+import Home from "./pages/home/Home";
+import About from "./pages/about/About";
+import Collection from "./pages/Collection/Collection";
+import Contact from "./pages/contact/Contact";
+import Cart from "./pages/cart/Cart";
+import Login from "./pages/login/Login";
+import PlaceOrder from "./components/placeOrder/PlaceOrder";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import { useContext, useEffect, useState } from "react";
-import { ShopContext } from "./components/context/context";
-import ProductDetails from "./components/pages/product/productDetails";
-import SearchResults from "./components/pages/SearchResults/SearchResults";
+import { ShopContext } from "./context/context";
+import ProductDetails from "./components/product/productDetails";
+import SearchResults from "./pages/SearchResults/SearchResults";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "./features/product/productThunks";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -26,11 +27,19 @@ const ScrollToTop = () => {
 
 function App() {
   const { darkMode } = useContext(ShopContext);
+
+  const { status } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (status === "idle") dispatch(fetchProducts());
+  }, [status]);
+
   return (
     <div>
       <Navbar />
       <ScrollToTop />
-      <div className={`${darkMode ? "dark" : ""} body-container`}>
+      <div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -39,7 +48,6 @@ function App() {
           <Route path="/products/:productId" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/orders" element={<Order />} />
           <Route path="/place-orders" element={<PlaceOrder />} />
           <Route path="/search/results" element={<SearchResults />} />
         </Routes>

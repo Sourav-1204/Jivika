@@ -1,32 +1,43 @@
 import React, { useContext } from "react";
 import "./cartTotal.css";
-import { ShopContext } from "../context/context";
+import { ShopContext } from "../../context/context";
+import { MdCurrencyRupee } from "react-icons/md";
+import { useSelector } from "react-redux";
 
-export default function CartTotal({ deliveryFee }) {
-  const { cartItem } = useContext(ShopContext);
-  let totalPrice = 0;
+export default function CartTotal() {
+  const { cartItems, subTotal, count } = useSelector((state) => state.cart);
 
-  function CalTotalAmount() {
-    const price = cartItem.reduce((sum, item) => sum + item.price, 0);
-    totalPrice = price;
-  }
+  const deliverCharges = count > 0 ? 20 : 0;
 
-  CalTotalAmount();
   return (
-    <div className="total-price-details">
-      <ul>
-        <li>
-          <p>Price ({cartItem.length} items)</p>
-          <p style={{ color: "blue" }}>{totalPrice.toFixed(2)}$</p>
+    <div className="w-full flex flex-col">
+      <ul className="p-5">
+        <li className="flex justify-between mt-2">
+          <p>Price ({cartItems.length} items)</p>
+          <p className="flex items-center text-blue-600">
+            <MdCurrencyRupee />
+            {subTotal.toFixed(2)}
+          </p>
         </li>
-        <li>
+        <li className="flex justify-between mt-2">
+          <p>Discount</p>
+          <p className="flex items-center text-green-500">
+            <MdCurrencyRupee />0
+          </p>
+        </li>
+        <li className="flex justify-between pb-2 mt-2 border-b border-[#bbb]">
           <p>Delivery Charges</p>
-          <p style={{ color: "green" }}>{deliveryFee}$</p>
+          <p className="flex items-center text-blue-500">
+            <MdCurrencyRupee />
+            {deliverCharges}
+          </p>
         </li>
-        <hr style={{ width: "80%", border: "1px solid black" }} />
-        <li>
-          <p>Total Price</p>
-          <p>{(totalPrice + deliveryFee).toFixed(2)}$</p>
+        <li className="flex justify-between text-lg font-bold mt-2">
+          <p>Total Amount</p>
+          <p className="flex items-center">
+            <MdCurrencyRupee />
+            {(subTotal + deliverCharges).toFixed(2)}
+          </p>
         </li>
       </ul>
     </div>

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "./card.css";
 import { MdCurrencyRupee } from "react-icons/md";
 import { useContext, useState } from "react";
-import { ShopContext } from "../context/context";
+import { ShopContext } from "../../context/context";
 
 export default function ProductCard({ item }) {
   const { toRupees, fetchRelatedProducts } = useContext(ShopContext);
@@ -24,9 +24,9 @@ export default function ProductCard({ item }) {
         <p>{item.brand}</p>
         <p>{item.title}</p>
         {/* <p>{item.description}</p> */}
-        <p style={{ color: "#6565F6", display: "flex", alignItems: "center" }}>
+        <p className="text-[#6565F6] flex items-center font-bold text-lg">
           <MdCurrencyRupee />
-          {Math.floor(toRupees(item.price))}
+          {item.price}
         </p>
         <p>{item.category}</p>
       </div>

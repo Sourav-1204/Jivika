@@ -26,10 +26,6 @@ body {
   background-color: #f2fdf8;
 }
 
-.body-container {
-  width: 100%;
-}
-
 .dark {
   color: #869ba8;
   background-color: #00061b;
@@ -41,4 +37,8 @@ body {
 
 .hideAlert {
   opacity: 0;
+}
+
+.border{
+  border: 1px solid #ccc;
 }
