@@ -95,7 +95,18 @@ function Cart() {
                           }
                         />
                       </div>
-                      <p className="font-semibold">Remove</p>
+                      <div className="flex items-center gap-1">
+                        <MdDelete
+                          className="size-6 text-red-500"
+                          onClick={() => dispatch(removeFromCart(item.id))}
+                        />
+                        <p
+                          className="font-bold max-sm:hidden"
+                          onClick={() => dispatch(removeFromCart(item.id))}
+                        >
+                          Remove
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
