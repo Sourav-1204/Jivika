@@ -13,6 +13,7 @@ const cartSlice = createSlice({
         addToCart: (state, action) => {
             const product = action.payload;
             const existingItem = state.cartItems.find(item => item.id === product.id);
+            if (existingItem && existingItem.quantity === 9) return;
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
@@ -31,10 +32,11 @@ const cartSlice = createSlice({
             const item = state.cartItems[index];
 
             if (item.quantity > 1) {
-                item.quantity -= 1; // decrement in place
+                item.quantity -= 1;
             } else {
                 state.cartItems.splice(index, 1); // remove item
             }
+
             recompute(state);
             saveToLocalStorage("cartItems", state.cartItems);
         },
@@ -63,7 +65,6 @@ const cartSlice = createSlice({
 
 function recompute(state) {
     const entries = state.cartItems;
-    console.log(entries, "entries in recompute")
     state.count = entries.reduce((acc, it) => acc + it.quantity, 0);
     saveToLocalStorage("count", state.count);
     state.subTotal = entries.reduce((acc, it) => acc + it.quantity * (it.price || 0), 0);

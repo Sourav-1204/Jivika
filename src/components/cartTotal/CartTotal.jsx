@@ -39,6 +39,7 @@ export default function CartTotal() {
             {(subTotal + deliverCharges).toFixed(2)}
           </p>
         </li>
+        {count > 0 && <hr className="mt-2 text-[#bbb]" />}
       </ul>
     </div>
   );

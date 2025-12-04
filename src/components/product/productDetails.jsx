@@ -58,6 +58,7 @@ export default function ProductDetails() {
       setImgCount((prev) => prev - (productData.images.length - 1));
     }
   }
+  console.log(productData, "productddta");
 
   // if (loading) {
   //   return (
@@ -106,6 +107,7 @@ export default function ProductDetails() {
             </div>
             <div className="btn-container">
               <button
+                className="bg-blue-500 text-white py-2 px-5 disabled:bg-gray-500 disabled:cursor-not-allowed"
                 type="button"
                 onClick={() => {
                   dispatch(addToCart(productData));
@@ -115,9 +117,9 @@ export default function ProductDetails() {
                 Add To Cart
               </button>
               <button
-                className="disabled:cursor-not-allowed"
+                className="bg-blue-500 text-white py-2 px-5 disabled:bg-gray-500 disabled:cursor-not-allowed"
                 type="button"
-                disabled={cartItems.some((item) => item.id != productData.id)}
+                disabled={!cartItems.some((item) => item.id === productData.id)}
                 onClick={() => {
                   dispatch(removeFromCart(productData.id));
                   handleAlert("Remove");

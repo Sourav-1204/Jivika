@@ -27,13 +27,11 @@ const ScrollToTop = () => {
 
 function App() {
   const { darkMode } = useContext(ShopContext);
-
-  const { status } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (status === "idle") dispatch(fetchProducts());
-  }, [status]);
+    dispatch(fetchProducts());
+  }, []);
 
   return (
     <div>

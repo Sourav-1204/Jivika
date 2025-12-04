@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import { ShopContext } from "../../context/context";
 import ProductCard from "../../components/card/ProductCard";
 import { MdCurrencyRupee, MdDelete } from "react-icons/md";
@@ -13,7 +13,6 @@ import {
   removeFromCart,
   setQty,
 } from "../../features/cart/cartSlice";
-import { div } from "framer-motion/client";
 
 function Cart() {
   const { cartItems, subTotal, count } = useSelector((state) => state.cart);
@@ -58,7 +57,7 @@ function Cart() {
                     <img
                       src={item.thumbnail}
                       alt={item.name}
-                      className="text-ellipsis size-40"
+                      className="text-ellipsis size-40 max-sm:size-32"
                     />
                   </div>
                   <div className="p-5">
@@ -119,6 +118,13 @@ function Cart() {
             <div>
               <CartTotal />
             </div>
+            {count > 0 && (
+              <div className="flex items-center justify-end pr-5">
+                <button onClick={()=>navigate('/place-orders')} className="text-lg font-bold text-white bg-emerald-700 py-1 px-10 max-:px-5 mb-2">
+                  Place Order
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

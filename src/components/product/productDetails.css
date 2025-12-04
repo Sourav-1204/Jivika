@@ -136,7 +136,7 @@
   margin-top: 10px;
 }
 
-.productDetails-right .details-inner1 .btn-container button {
+/* .productDetails-right .details-inner1 .btn-container button {
   width: 40%;
   padding: 10px 12px;
   color: white;
@@ -144,7 +144,7 @@
   font-size: 18px;
   outline: none;
   border: none;
-}
+} */
 
 .productDetails-right .details-inner1 button:active {
   transform: scale(0.9);
