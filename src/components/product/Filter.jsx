@@ -1,35 +1,37 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentCategory } from "../../features/product/productSlice";
+import {
+  setCurrentCategory,
+  sortProducts,
+} from "../../features/product/productSlice";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
-import { sortBy } from "../../features/utils/sortData";
 
 export default function Filter() {
   const { categories, loadingCategories, errorCategories, currentCategory } =
     useSelector((state) => state.products);
   const dispatch = useDispatch();
   const [visibleCategoryCount, setVisibleCategoryCount] = useState(5);
-  // const [currentCategory, setCurrentCategory] = useState("");
+  const [sortParam, setSortParam] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
 
-  // console.log(categories, "categories in filter");
-  // console.log(currentCategory, "currentcategiry");
+  useEffect(() => {
+    dispatch(sortProducts({sortParam, sortOrder}));
+  }, [sortParam, sortOrder]);
+  console.log(sortParam, sortOrder, "sort");
 
-  const Sort = ({ sortBy }) => {
-    return (
-      <div>
-        {sortBy &&
-          sortBy.map((item) => (
-            <div key={sortBy.id} className="ml-3 font-semibold">
-              <label>
-                <input type="checkbox" className="mr-1" />
-                {item.value}
-              </label>
-              {item.subvalue && <Sort sortBy={item.subvalue} />}
-            </div>
-          ))}
-      </div>
-    );
+  const handleSortParam = (getParam, getorder) => {
+    // console.log(getParam, getorder, "in function");
+    if (getParam !== sortParam || getorder !== sortOrder) {
+      setSortParam(getParam);
+      setSortOrder(getorder);
+    } else if (getParam === sortParam || getorder === sortOrder) {
+      setSortParam("");
+      setSortOrder("");
+    } else if (getParam !== "") {
+      setSortParam(getParam);
+      setSortOrder(getorder);
+    }
   };
 
   return (
@@ -72,7 +74,46 @@ export default function Filter() {
       ) : null}
       <div>
         <p className="text-lg font-semibold mb-1">Sort By</p>
-        <Sort sortBy={sortBy} />
+        <div className="flex flex-col ml-3 font-semibold">
+          <div className="flex flex-col">
+            <label>
+              <input
+                type="checkbox"
+                checked={sortParam === "price" || sortOrder !== ""}
+                onChange={() => handleSortParam("price", "asc")}
+                className="mr-1 mt-1"
+              />
+              Price
+            </label>
+            <label className="ml-3">
+              <input
+                type="checkbox"
+                checked={sortOrder === "asc"}
+                onChange={() => handleSortParam("price", "asc")}
+                className="mr-1 mt-1"
+              />
+              Low-High
+            </label>
+            <label className="ml-3">
+              <input
+                type="checkbox"
+                checked={sortOrder === "des"}
+                onChange={() => handleSortParam("price", "des")}
+                className="mr-1 mt-1"
+              />
+              High-Low
+            </label>
+          </div>
+          <label>
+            <input
+              type="checkbox"
+              checked={sortParam === "rating"}
+              onChange={() => handleSortParam("rating", "")}
+              className="mr-1 mt-1"
+            />
+            Rating
+          </label>
+        </div>
       </div>
     </div>
   );

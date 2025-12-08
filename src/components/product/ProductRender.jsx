@@ -4,20 +4,43 @@ import { MdOutlineCurrencyRupee } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../features/cart/cartSlice";
+import {
+  fetchProducts,
+  fetchProductsByCategories,
+} from "../../features/product/productThunks";
+import Loader from "../loader/loader";
+import { IoStar } from "react-icons/io5";
 
 export default function ProductRender({ start, end }) {
-  const { items, loadingProducts, errorProducts } = useSelector(
-    (state) => state.products
-  );
+  const {
+    items,
+    filteredProducts,
+    loadingFilteredProducts,
+    errorFilteredProducts,
+    currentCategory,
+  } = useSelector((state) => state.products);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (currentCategory !== "" && currentCategory.length > 3) {
+      dispatch(fetchProductsByCategories(currentCategory));
+    }
+  }, [currentCategory]);
+
   return (
     <div className="w-full h-full my-2">
+      {loadingFilteredProducts && (
+        <div className="h-full w-full flex flex-col justify-center items-center">
+          <Loader />
+          <p className="text-green-400 mt-2">Loading...</p>
+        </div>
+      )}
       <div className="grid gap-y-3">
-        {items &&
-          items.length > 0 &&
-          items.slice(start, end).map((item) => (
+        {!loadingFilteredProducts &&
+          filteredProducts.length > 0 &&
+          filteredProducts.slice(start, end).map((item) => (
             <div
               key={item.id}
               className="max-w-44 flex flex-col items-center border border-[#000] rounded-lg"
@@ -36,6 +59,10 @@ export default function ProductRender({ start, end }) {
                 <p className="truncate font-bold">{item.title}</p>
                 <p className="flex items-center font-bold text-lg text-blue-500">
                   <MdOutlineCurrencyRupee /> {item.price}
+                </p>
+                <p className="flex items-center font-bold gap-1">
+                  <IoStar className="text-yellow-500" />
+                  {item.rating}
                 </p>
               </div>
               <div className="flex items-center gap-2 p-2">

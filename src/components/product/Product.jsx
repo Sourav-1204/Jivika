@@ -12,7 +12,7 @@ import {
 import ProductRender from "./ProductRender";
 
 function Product() {
-  const { items, loadingProducts, errorProducts } = useSelector(
+  const { filteredProducts, loadingProducts, errorProducts } = useSelector(
     (state) => state.products
   );
 
@@ -20,7 +20,7 @@ function Product() {
 
   const [currentPage, setCurrentPage] = useState(0);
   const Page_Size = 12;
-  const totalProducts = items.length;
+  const totalProducts = filteredProducts.length;
   const noOfPages = Math.ceil(totalProducts / Page_Size);
 
   const start = currentPage * 12;
@@ -66,7 +66,7 @@ function Product() {
         <div className="w-[20%] max-h-[400px] overflow-y-scroll scrollbar max-sm:w-[80%] min-w-72 flex flex-col p-5 border-r max-sm:border-none border-[#ccc]">
           <Filter />
         </div>
-        <div className="w-[80%] h-[600px] overflow-scroll max-sm:w-full flex items-center">
+        <div className="w-[80%] h-[600px] overflow-scroll scrollbar max-sm:w-full flex items-center">
           <ProductRender start={start} end={end} />
         </div>
       </div>

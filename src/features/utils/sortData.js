@@ -1,18 +1,33 @@
+import { FaRegStar } from "react-icons/fa";
+
 export const sortBy = [
     {
         id: "1",
         value: "Rating",
-    },
-    {
-        id: "2",
-        value: "Price",
         subvalue: [
             {
                 id: "3",
-                value: "Low-High",
+                order: "Low-High",
+                suborder: "asc"
             }, {
                 id: "4",
-                value: "High-Low"
+                order: "High-Low",
+                suborder: "des"
+            }
+        ]
+    },
+    {
+        id: "5",
+        value: "Price",
+        subvalue: [
+            {
+                id: "6",
+                order: "Low-High",
+                suborder: "asc"
+            }, {
+                id: "7",
+                order: "High-Low",
+                suborder: "des"
             }
         ]
     }
