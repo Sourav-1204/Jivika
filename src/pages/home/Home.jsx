@@ -4,6 +4,7 @@ import Product from "../../components/product/Product";
 import OurPolicy from "../../components/ourPolicy";
 import NewsLetterBox from "../../components/newsletter/NewsLetterBox";
 import { motion } from "framer-motion";
+import RecentlyViewed from "../../components/product/recentlyViewed";
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
     // }}
     >
       <Hero />
+      <RecentlyViewed />
       <Product />
       <OurPolicy />
       <NewsLetterBox />

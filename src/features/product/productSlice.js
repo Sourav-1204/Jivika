@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchProducts, fetchCategories, fetchProductsByCategories } from './productThunks';
+import { getFromLocalStorage, saveToLocalStorage } from "../utils/cartHelper"
 
 const initialState = {
     items: [],
     categories: [],
     filteredProducts: [],
     temp: [],
+    recentlyViewed: getFromLocalStorage("recentlyViewed") || [],
     loadingFilteredProducts: false,
     currentCategory: "",
     loadingProducts: false,
@@ -31,7 +33,6 @@ const productSlice = createSlice({
         },
         sortProducts: (state, action) => {
             const { sortParam, sortOrder } = action.payload;
-            console.log(sortParam, sortOrder, "lohcall")
             if (sortParam) {
                 state.temp = state.filteredProducts;
                 state.filteredProducts = [...state.filteredProducts].sort((a, b) => {
@@ -43,6 +44,18 @@ const productSlice = createSlice({
                 state.filteredProducts = state.items;
             }
 
+        },
+        handleRecentlyViewed: (state, action) => {
+            const product = action.payload;
+            const isPresent = state.recentlyViewed.some(item => item.id === product.id);
+            console.log(isPresent, "ispresent")
+            if (!isPresent && state.recentlyViewed.length < 12) {
+                state.recentlyViewed.unshift(product);
+            } else if (state.recentlyViewed.length > 12) {
+                state.recentlyViewed.pop();
+                state.recentlyViewed.unshift(product)
+            }
+            saveToLocalStorage("recentlyViewed", state.recentlyViewed);
         }
     },
     extraReducers: (builder) => {
@@ -92,5 +105,5 @@ const productSlice = createSlice({
     }
 })
 
-export const { setCurrentCategory, getFilteredProducts, sortProducts } = productSlice.actions;
+export const { setCurrentCategory, getFilteredProducts, sortProducts, handleRecentlyViewed } = productSlice.actions;
 export default productSlice.reducer;

@@ -3,8 +3,8 @@ import { saveToLocalStorage, getFromLocalStorage } from "../utils/cartHelper"
 
 const initialState = {
     cartItems: getFromLocalStorage("cartItems") || [],
-    count: getFromLocalStorage("count"),
-    subTotal: getFromLocalStorage("subTotal"),
+    count: getFromLocalStorage("count") || 0,
+    subTotal: getFromLocalStorage("subTotal") || 0,
 }
 const cartSlice = createSlice({
     name: "cart",

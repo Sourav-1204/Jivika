@@ -58,7 +58,6 @@ export default function ProductDetails() {
       setImgCount((prev) => prev - (productData.images.length - 1));
     }
   }
-  console.log(productData, "productddta");
 
   // if (loading) {
   //   return (

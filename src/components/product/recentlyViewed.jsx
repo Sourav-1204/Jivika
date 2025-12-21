@@ -1,61 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IoMdAdd } from "react-icons/io";
+import { IoStar } from "react-icons/io5";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../features/cart/cartSlice";
-import {
-  fetchProducts,
-  fetchProductsByCategories,
-} from "../../features/product/productThunks";
-import Loader from "../loader/loader";
-import { IoStar } from "react-icons/io5";
-import { handleRecentlyViewed } from "../../features/product/productSlice";
 
-export default function ProductRender({ start, end }) {
-  const {
-    items,
-    filteredProducts,
-    loadingFilteredProducts,
-    errorFilteredProducts,
-    recentlyViewed,
-    currentCategory,
-  } = useSelector((state) => state.products);
+export default function RecentlyViewed() {
+  const { recentlyViewed } = useSelector((state) => state.products);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (currentCategory !== "" && currentCategory.length > 3) {
-      dispatch(fetchProductsByCategories(currentCategory));
-    }
-  }, [currentCategory]);
-
-  console.log(recentlyViewed, "recent products");
-
   return (
-    <div className="w-full h-full my-2">
-      {loadingFilteredProducts && (
-        <div className="h-full w-full flex flex-col justify-center items-center">
-          <Loader />
-          <p className="text-green-400 mt-2">Loading...</p>
+    recentlyViewed &&
+    recentlyViewed.length > 5 && (
+      <div className="w-full flex flex-col p-2 pt-10">
+        <div className="px-2">
+          <p className="sm:text-5xl text-3xl font-bold">Recently Viewed</p>
         </div>
-      )}
-      <div className="grid gap-y-3">
-        {!loadingFilteredProducts &&
-          filteredProducts.length > 0 &&
-          filteredProducts.slice(start, end).map((item) => (
+        <div className="w-full mt-5 flex gap-3 overflow-x-scroll scrollbar overflow-y-hidden px-2">
+          {recentlyViewed.map((item) => (
             <div
               key={item.id}
-              className="max-w-44 flex flex-col items-center border border-[#000] rounded-lg"
+              className="min-w-44 max-w-44 flex flex-col items-center border border-[#000] rounded-lg"
             >
               <div className="w-full flex items-center justify-center">
                 <img
                   src={item.thumbnail}
                   alt={item.title}
-                  className=" border-b border-[#aaa] rounded-lg bg-blue-100"
+                  className="border-b border-[#aaa] rounded-lg bg-blue-100"
                   onClick={() => {
-                    dispatch(handleRecentlyViewed(item));
                     navigate(`/products/${item.id}`);
                   }}
                 />
@@ -63,13 +38,9 @@ export default function ProductRender({ start, end }) {
               <div
                 className="w-full border-t border-[#aaa] rounded-lg p-2 mt-2"
                 onClick={() => {
-                  dispatch(handleRecentlyViewed(item));
                   navigate(`/products/${item.id}`);
                 }}
               >
-                <p className="text-sm font-semibold">
-                  {item.brand && item.brand}
-                </p>
                 <p className="truncate font-bold">{item.title}</p>
                 <p className="flex items-center font-bold text-lg text-blue-500">
                   <MdOutlineCurrencyRupee /> {item.price}
@@ -88,7 +59,6 @@ export default function ProductRender({ start, end }) {
                 </button>
                 <button
                   onClick={() => {
-                    dispatch(handleRecentlyViewed(item));
                     navigate(`/products/${item.id}`);
                   }}
                   className="text-sm bg-blue-600 rounded-lg p-2 px-4 text-white active:scale-95"
@@ -98,7 +68,8 @@ export default function ProductRender({ start, end }) {
               </div>
             </div>
           ))}
+        </div>
       </div>
-    </div>
+    )
   );
 }

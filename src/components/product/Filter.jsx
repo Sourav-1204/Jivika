@@ -18,7 +18,6 @@ export default function Filter() {
   useEffect(() => {
     dispatch(sortProducts({sortParam, sortOrder}));
   }, [sortParam, sortOrder]);
-  console.log(sortParam, sortOrder, "sort");
 
   const handleSortParam = (getParam, getorder) => {
     // console.log(getParam, getorder, "in function");
